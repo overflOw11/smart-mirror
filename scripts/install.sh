@@ -80,7 +80,7 @@ fi
 
 # Getting the code
 printf "\n$(tput setaf 12)Cloning Git Repo$(tput sgr0)\n"
-cd ~
+cd /home/$LOGNAME
 sudo -u $LOGNAME git clone https://github.com/evancohen/smart-mirror.git
 printf "\n$(tput setaf 10)smart-mirror code is now downloaded$(tput sgr0)\n"
 
