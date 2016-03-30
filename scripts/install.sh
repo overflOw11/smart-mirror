@@ -32,15 +32,16 @@ EOF
 
 echo "This script will install the smart-mirror and it's dependencies."
 
-
+# Ensure the use would like to start the install
 read -r -p "Would you like to continue? [y/N] " response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
 then
-    echo "Excellent!"
+    echo "Excellent! $(tput setaf 9)Please do not exit this script until it is complete.$(tput sgr0)"
 else
     exit 1
 fi
 
+# 
 read -r -p "[Requires Reboot] Would you like to automoticlly rotate your monitor? [y/N]" rotateResponse
 if [[ $rotateResponse =~ ^([yY][eE][sS]|[yY])$ ]]
 then
