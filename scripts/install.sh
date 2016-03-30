@@ -30,7 +30,7 @@ cat << "EOF"
 
 EOF
 
-printf "This script will install the smart-mirror and it's dependencies."
+printf "This script will install the smart-mirror and it's dependencies.\n"
 
 # Ensure the use would like to start the install
 read -r -p "Would you like to continue? [y/N] " response
@@ -41,7 +41,7 @@ else
     exit 1
 fi
 
-# 
+printf "\n"
 read -r -p "[Requires Reboot] Would you like to automoticlly rotate your monitor? [y/N]" rotateResponse
 if [[ $rotateResponse =~ ^([yY][eE][sS]|[yY])$ ]]
 then
@@ -75,13 +75,13 @@ fi
 # Getting the code
 printf "$(tput setaf 12)Cloning Git Repo$(tput sgr0)\n"
 cd ~
-sudo -u `logname` git clone https://github.com/evancohen/smart-mirror.git
+sudo -u $LOGNAME git clone https://github.com/evancohen/smart-mirror.git
 printf "$(tput setaf 10)smart-mirror code is now downloaded$(tput sgr0)\n"
 
 cd smart-mirror
 
 printf "$(tput setaf 12)Creating smart-mirror Config$(tput sgr0)\n"
-sudo -u `logname` cp config.example.js config.js
+sudo -u $LOGNAME cp config.example.js config.js
 
 # Install package to hide the mouse when inactive
 printf "$(tput setaf 12)Installing unclutter$(tput sgr0)\n"
@@ -93,7 +93,7 @@ unclutter -idle 0.1 -root' /etc/xdg/lxsession/LXDE/autostart
 
 printf "$(tput setaf 12)Installing smart-mirror dependencies...$(tput sgr0)"
 printf "$(tput setaf 11)This may take a while. Go grab a beer :)$(tput sgr0)\n"
-sudo -u `logname` npm install
+sudo -u $LOGNAME npm install
 
 # The mirror is now installed, yay!
 cat << "EOF"
