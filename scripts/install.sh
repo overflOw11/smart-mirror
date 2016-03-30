@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
 # Supported versions of node: v4.x, v5.x
 NODE_VERSION="v4.*\|v5.*"
 
