@@ -47,7 +47,9 @@ if [[ $rotateResponse =~ ^([yY][eE][sS]|[yY])$ ]]
 then
    # Rotate Display (replace the display_rotate line with display_rotate=1)
     sed -i -e '$a\
-    display_rotate=1' /boot/config.txt
+
+#Rotate the display (smart-mirror)
+display_rotate=1' /boot/config.txt
 fi
 
 printf "\nChecking for node...\n"
@@ -90,6 +92,8 @@ sudo apt-get install unclutter
 
 # Apply LXDE unclutter autostart 
 sed -i -e '$a\
+
+#Hide the mouse when inactive (smart-mirror)
 unclutter -idle 0.1 -root' /etc/xdg/lxsession/LXDE/autostart
 
 printf "\n\n$(tput setaf 12)Installing smart-mirror dependencies...$(tput sgr0)\n"
