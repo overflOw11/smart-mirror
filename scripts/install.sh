@@ -54,13 +54,13 @@ node --version | grep ${NODE_VERSION}
 if [[ $? != 0 ]] ;
 then
     # Install Node
-    echo "$(tput setaf 9)Downloading Node$(tput sgr0)"
+    echo "$(tput setaf 12)Downloading Node$(tput sgr0)"
     wget https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-armv7l.tar.gz
     tar -xvf node-v4.0.0-linux-armv7l.tar.gz 
     cd node-v4.0.0-linux-armv7l
     
     # Copy to /usr/local
-    echo "$(tput setaf 9)Installing Node$(tput sgr0)"
+    echo "$(tput setaf 12)Installing Node$(tput sgr0)"
     sudo cp -R * /usr/local/
     
     # Clean up after ourselvs
@@ -73,25 +73,25 @@ else
 fi
 
 # Getting the code
-echo "$(tput setaf 9)Cloning Git Repo$(tput sgr0)"
+echo "$(tput setaf 12)Cloning Git Repo$(tput sgr0)"
 cd ~
 git clone https://github.com/evancohen/smart-mirror.git
 echo "$(tput setaf 10)smart-mirror code is now downloaded$(tput sgr0)"
 
 cd smart-mirror
 
-echo "$(tput setaf 9)Creating Mirror Config$(tput sgr0)"
+echo "$(tput setaf 12)Creating Mirror Config$(tput sgr0)"
 cp config.example.js config.js
 
 # Install package to hide the mouse when inactive
-echo "$(tput setaf 9)Installing unclutter$(tput sgr0)"
+echo "$(tput setaf 12)Installing unclutter$(tput sgr0)"
 sudo apt-get install unclutter
 
 # Apply LXDE unclutter autostart 
 sed -i -e '$a\
 unclutter -idle 0.1 -root' /etc/xdg/lxsession/LXDE/autostart
 
-echo "$(tput setaf 9)Installing smart-mirror dependencies...$(tput sgr0)"
+echo "$(tput setaf 12)Installing smart-mirror dependencies...$(tput sgr0)"
 echo "$(tput setaf 11)This may take a bit$(tput sgr0)"
 npm install
 echo "$(tput setaf 10)The smart-mirror is now installed!$(tput sgr0)"
