@@ -74,10 +74,10 @@ else
 fi
 
 # Getting the code
-printf "$(tput setaf 12)Cloning Git Repo$(tput sgr0)\n"
+printf "\n$(tput setaf 12)Cloning Git Repo$(tput sgr0)\n"
 cd ~
 sudo -u $LOGNAME git clone https://github.com/evancohen/smart-mirror.git
-printf "$(tput setaf 10)smart-mirror code is now downloaded$(tput sgr0)\n"
+printf "\n$(tput setaf 10)smart-mirror code is now downloaded$(tput sgr0)\n"
 
 cd smart-mirror
 
@@ -85,14 +85,14 @@ printf "$(tput setaf 12)Creating smart-mirror Config$(tput sgr0)\n"
 sudo -u $LOGNAME cp config.example.js config.js
 
 # Install package to hide the mouse when inactive
-printf "$(tput setaf 12)Installing unclutter$(tput sgr0)\n"
+printf "\n$(tput setaf 12)Installing unclutter$(tput sgr0)\n"
 sudo apt-get install unclutter
 
 # Apply LXDE unclutter autostart 
 sed -i -e '$a\
 unclutter -idle 0.1 -root' /etc/xdg/lxsession/LXDE/autostart
 
-printf "$(tput setaf 12)Installing smart-mirror dependencies...$(tput sgr0)"
+printf "\n\n$(tput setaf 12)Installing smart-mirror dependencies...$(tput sgr0)\n"
 printf "$(tput setaf 11)This may take a while. Go grab a beer :)$(tput sgr0)\n"
 sudo -u $LOGNAME npm install
 
@@ -110,5 +110,6 @@ cat << "EOF"
   |,-'--|--'-.|
   
 EOF
+# ASCII art found on http://textart.io/
 
 exit 0
