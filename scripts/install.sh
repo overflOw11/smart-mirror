@@ -44,9 +44,8 @@ fi
 read -r -p "[Requires Reboot] Would you like to automoticlly rotate your monitor? [y/N]" rotateResponse
 if [[ $rotateResponse =~ ^([yY][eE][sS]|[yY])$ ]]
 then
-   # Rotate Display
-    sed -i -e '$a\
-    display_rotate=1' /boot/config.txt
+   # Rotate Display (replace the display_rotate line with display_rotate=1)
+    sed -i '/display_rotate/c\display_rotate=1' /boot/config.txt
 fi
 
 echo "Checking for node"
