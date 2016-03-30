@@ -46,28 +46,29 @@ read -r -p "[Requires Reboot] Would you like to automoticlly rotate your monitor
 if [[ $rotateResponse =~ ^([yY][eE][sS]|[yY])$ ]]
 then
    # Rotate Display (replace the display_rotate line with display_rotate=1)
-    sed -i '/display_rotate/c\display_rotate=1' /boot/config.txt
+    sed -i -e '$a\
+    display_rotate=1' /boot/config.txt
 fi
 
-printf "Checking for node..."
+printf "\nChecking for node...\n"
 node --version | grep ${NODE_VERSION}
 if [[ $? != 0 ]] ;
 then
     # Install Node
-    printf "$(tput setaf 12)Downloading Node$(tput sgr0)\n"
+    printf "$(tput setaf 12)Downloading node$(tput sgr0)\n"
     wget https://nodejs.org/dist/v4.0.0/node-v4.0.0-linux-armv7l.tar.gz
     tar -xvf node-v4.0.0-linux-armv7l.tar.gz 
     cd node-v4.0.0-linux-armv7l
     
     # Copy to /usr/local
-    printf "$(tput setaf 12)Installing Node$(tput sgr0)\n"
+    printf "$(tput setaf 12)Installing node$(tput sgr0)\n"
     sudo cp -R * /usr/local/
     
     # Clean up after ourselvs
     cd ..
     rm node-v4.0.0-linux-armv7l.tar.gz
     rm -R node-v4.0.0-linux-armv7l
-    printf "$(tput setaf 10)Node is now installed!$(tput sgr0)\n"
+    printf "$(tput setaf 10)node is now installed!$(tput sgr0)\n"
 else
     printf "$(tput setaf 10)node is already installed, great job!$(tput sgr0)\n"
 fi
