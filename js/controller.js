@@ -39,7 +39,7 @@
         tmhDynamicLocale.set(config.language.toLowerCase());
         moment.locale(config.language);
         console.log('moment local', moment.locale());
-        
+
         //Update the time
         function updateTime(){
             $scope.date = new moment();
@@ -108,7 +108,7 @@
                 FitbitService.profileSummary(function(response){
                     $scope.fbDailyAverage = response;
                 });
-                
+
                 FitbitService.todaySummary(function(response){
                     $scope.fbToday = response;
                 });
@@ -173,8 +173,17 @@
                 var voiceId = 'commands.'+commandId+'.voice';
                 var textId = 'commands.'+commandId+'.text';
                 var descId = 'commands.'+commandId+'.description';
-                $translate([voiceId, textId, descId]).then(function (translations) {
-                    AnnyangService.addCommand(translations[voiceId], commandFunction);
+                var regexpId = 'commands.'+commandId+'.regexp';
+                $translate([voiceId, textId, descId, regexpId]).then(function (translations) {
+                    var voice = translations[voiceId];
+                    var regexpString = translations[regexpId];
+                    var regexp = new RegExp(regexpString)
+                    if (regexpString != 'commands.'+commandId+'.regexp'){
+                        var command = {voice: {'regexp': regexp, 'callback': commandFunction}};
+                        AnnyangService.addRegexpCommand(command);
+                    } else {
+                        AnnyangService.addCommand(translations[voiceId], commandFunction);
+                    }
                     if (translations[textId] != '') {
                         var command = {"text": translations[textId], "description": translations[descId]};
                         $scope.commands.push(command);
@@ -189,7 +198,7 @@
                 $scope.focus = "commands";
             });
 
-            
+
             // Go back to default view
             addCommand('home', defaultView);
 
@@ -207,7 +216,7 @@
                 console.debug("Boop Boop. Showing debug info...");
                 $scope.debug = true;
             });
-            
+
             // Show map
             addCommand('map_show', function() {
                 console.debug("Going on an adventure?");
@@ -217,7 +226,7 @@
                     $scope.focus = "map";
                 });
             });
-            
+
             // Hide everything and "sleep"
             addCommand('map_location', function(location) {
                 console.debug("Getting map of", location);
@@ -267,7 +276,7 @@
                     SoundCloudService.startVisualizer();
                 });
             });
-            
+
             //SoundCloud stop
             addCommand('sc_pause', function() {
                 sound.pause();

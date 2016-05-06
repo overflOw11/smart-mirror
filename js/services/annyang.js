@@ -23,6 +23,14 @@
             console.debug('added command "' + phrase + '"', service.commands);
         };
 
+        service.addRegexpCommand = function(command) {
+            // Extend our commands list
+            angular.extend(service.commands, command);
+
+            // Add the commands to annyang
+            annyang.addCommands(service.commands);
+        }
+
         service.setLanguage = function(langCode) {
             annyang.setLanguage(langCode);
         };
@@ -48,7 +56,7 @@
             };
             annyang.start();
         };
-        
+
         service.abort = function(){
             annyang.abort();
         }
