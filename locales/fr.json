@@ -141,8 +141,8 @@
             "description": "Quel heure est-il?"
         },
         "timer_start": {
-            "text": "Mets le minuteur (pour) ________",
-            "voice": "Mets le minuteur (pour) *duration",
+            "text": "(Mets le) minuteur (pour) ________",
+            "voice": "(Mets le) minuteur (pour) *duration",
             "description": "Démarre le minuteur"
         },
         "timer_show": {
@@ -161,8 +161,8 @@
             "description": "Reprend le timer."
         },
         "sc_play": {
-            "text": "Joue un morceau (de) (des) ________",
-            "voice": "Joue un morceau (de) (des) *query",
+            "text": "Joue(-moi) un morceau (de) (des) ________",
+            "voice": "Joue(-moi) un morceau (de) (des) *query",
             "description": "Joue un morceau depuis SoundCloud"
         },
         "sc_pause": {
