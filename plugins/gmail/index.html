@@ -1,0 +1,8 @@
+<ul ng-controller="Gmail" class="gmail fade" ng-show="focus == 'default'">
+    <li class="account" ng-repeat="(name, emailNumber) in gmail">
+        <div class="gmail-details">
+            <span class="gmail-account" ng-bind="name"></span>
+            <span ng-bind="emailNumber"></span>
+        </div>
+    </li>
+</ul>
